@@ -3,20 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <title>로그인 폼</title>
-  <!--link href="style.css"--> 
+  <!-- link href="style.css" -->
 </head>
 <body>
   <div class="container">
     <h1>할일목록</h1>
-    <form class="login-form">
-      <input type="text" placeholder="ID" name="id" required>
-      <h2></h2>
-      <input type="password" placeholder="PW" name="pw" required>
-      <h2></h2>
-      <button type="submit">Login</button>
-    </form>
+
+    {% if login == True %}
+      <h3>로그인에 성공했습니다. {{username}}님 어서오세요!</h3>
+      <a href="{{ url_for('logout') }}">로그아웃</a>
+    {% else %}
+      <form method="post" class="login-form" action="{{ url_for('login') }}">
+        <input type="text" placeholder="ID" name="loginId" required>
+        <h2></h2>
+        <input type="password" placeholder="PW" name="loginPw" required>
+        <h2></h2>
+        <button type="submit">Login</button>
+      </form>
+    {% endif %}
+    
   </div>
 </body>
 </html>
+
 
 
