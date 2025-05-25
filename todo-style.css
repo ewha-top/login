@@ -11,40 +11,45 @@ body {
 
 /* 할 일 목록 제목 */
 .todo-list-section h2 {
+  position: absolute;
+  width: 223px;
+  height: 63px;
+  left: 206px;
+  top: 76px;
+
   font-style: italic;
   font-weight: 300;
-  font-size: 36px;
-  color: #000;
-  border-bottom: 1px solid #000;
-  margin-bottom: 16px;
+  font-size: 48px;
+  line-height: 58px;
+  color: #000000;
+  border: 1px solid #000000;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 /* 전에 못한 일 제목 */
 .prev-todo-section h3 {
+  position: absolute;
+  width: 265px;
+  height: 63px;
+  left: 851px;
+  top: 76px;
+
   font-style: italic;
   font-weight: 300;
-  font-size: 36px;
-  color: #000;
-  border-bottom: 1px solid #000;
-  margin-bottom: 16px;
+  font-size: 48px;
+  line-height: 58px;
+  color: #000000;
+  border: 1px solid #000000;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 /* 날짜 텍스트 */
 .date {
-  font-style: italic;
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 39px;
-  color: #000;
-  margin-bottom: 10px;
-}
-
-/* 할 일 항목 스타일 (예시) */
-.todo-list li, .prev-todo-list li {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  margin-bottom: 12px;
+  position: absolute;
+  width: 267px;
+  height: 51px;
+  left: 64px;
+  top: 170px;
 
   font-style: italic;
   font-weight: 300;
@@ -53,15 +58,57 @@ body {
   color: #000000;
 }
 
-/* 체크박스 공통 스타일 */
-input[type="checkbox"] {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
+/* 할 일 항목 스타일 */
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
+
+/* 각 항목 li 안의 label 정렬*/
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/*할 일 텍스트*/
+.todo-item span{
+  flex: 1;
+  word-break: break-word;
+  color: #333;
+}
+
+/* 체크박스 공통 스타일 */
+.todo-item input[type="checkbox"] {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+@media (max-width: 600px) {
+  .todo-item {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .todo-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+}
+
 
 /* 할 일 추가 버튼 */
 .add-todo {
+  position: absolute;
+  width: 125px;
+  height: 29px;
+  left: 143px;
+  top: 490px;
+
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -70,76 +117,76 @@ input[type="checkbox"] {
   background: none;
   border: none;
   cursor: pointer;
-  margin-top: 10px;
 }
 
 .add-task-box {
   display: none; /* 처음엔 안 보이게 */
-  margin-top: 10px; 
 }
+
+/* 공통 구분선 스타일 */
+.section-divider {
+  border: none;
+  height: 2px;
+  margin: 40px 0;
+}
+
+/* 검정 구분선 */
+.black-divider {
+  background-color: #000;
+}
+
+/* 회색 구분선 */
+.gray-divider {
+  background-color: #C0C0C0;
+}
+
 
 
 /* 메모 입력 영역 */
 .memo-section {
-  position: absolute;
-  width: 535px;
-  height: 223px;
-  left: 59px;
-  top: 565px;
-  background: #D9D9D9;
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f8f8f8;
   border-radius: 10px;
-  padding: 15px;
-}
-
-.memo-section h4 {
-  font-size: 24px;
-  color: #6E6E6E;
-  margin-bottom: 10px;
-}
-
-.memo-section textarea {
   width: 100%;
-  height: 160px;
-  border: none;
-  background: transparent;
-  resize: none;
+  max-width: 600px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.memo-label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.memo-box {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 14px;
+  min-height: 150px;
+  background-color: #fff;
   font-size: 16px;
-  line-height: 24px;
-  color: #000;
+  line-height: 1.6;
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+  overflow-y: auto;
 }
 
-/* 선 */
-.line {
-  position: absolute;
-  border: 5px solid #949494;
-}
+@media (max-width: 600px) {
+  .memo-section {
+    padding: 15px;
+  }
 
-.line.vertical {
-  width: 796px;
-  height: 0;
-  left: 640px;
-  top: 18px;
-  transform: rotate(90deg);
-}
+  .memo-label {
+    font-size: 16px;
+  }
 
-.line.horizontal {
-  width: 535px;
-  height: 0;
-  border: 5px solid #9C9C9C;
-}
-
-.line1 { top: 154px; left: 59px; }
-.line2 { top: 155px; left: 696px; }
-
-/* 섹션 레이아웃 */
-.main-sections {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-}
-
-.todo-list-section,
-.prev-todo-section {
-  width: 40%;
-  margin-left: 0;
+  .memo-box {
+    font-size: 14px;
+    padding: 10px;
+    min-height: 120px;
+  }
 }
