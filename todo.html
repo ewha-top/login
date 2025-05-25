@@ -4,7 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <title>체크리스트</title>
-    <link rel="stylesheet" href="todo-style.css" />
+    <link rel="stylesheet" href="/static/todo-style.css" />
+    <style>
+    /* 추가된 스타일 */
+    .main-sections {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 60px;
+    }
+
+    .prev-todo-section {
+      margin-left: 20px;
+    }
+
+    .prev-todo-list li {
+      margin-top: 10px;
+    }
+  </style>
 </head>
 
 <body>
@@ -15,40 +31,101 @@
     <div class="icon calendar-icon"></div>
     <div class="icon logout-icon"></div>
 
+  <div class="main-sections"></div>
     <div class="todo-list-section">
       <h2 class="section-title todo-title">할 일 목록</h2>
       <div class="date">날짜가져오는거(JAVA)</div>
       
       <!-- 할 일 목록-->
-      <ul class="todo-list">
+      <ol class="todo-list">
         <li>
-          <input type="checkbox" id="todo1">
-          <label for="todo1">디비에서내용연결(JAVA)</label>
+          <label class="todo-item"> 
+            <span>디비에서내용연결(JAVA)</span>
+            <input type="checkbox" id="todo1">
+          </label>
         </li>
-      </ul>
+      </ol>
       <!-- 할 일 추가 버튼-->
-       <div class="add-task-wrapper">
+      <div class="add-task-wrapper">
         <input type="text" class="add-task-box" placeholder="할 일을 입력하세요" style="display: none;">
         <button class="add-todo">+ 할 일 추가</button>
-       </div>
+      </div>
     </div>
+
+    <!-- 할 일 추가 버튼 아래에 회색 구분선 -->
+    <hr class="section-divider gray-divider">
 
     <!-- 메모 영역-->
     <div class="memo-section">
-      <div class="memo-label">메모</div>
-      <hr class="memo-line">
-      <hr class="memo-line">
-      <hr class="memo-line">
-      <hr class="memo-line">
+      <h3 class="memo-label">메모</h3>
+      <div class="memo-box" contenteditable="true">여기에 메모를 작성하세요.</div>
     </div>
 
+    <!-- 전에 못한 일 제목 위에 검정 구분선 -->
+    <hr class="section-divider black-divider">
+
+    <!-- 전에 못한 일 영역 -->
     <div class="prev-todo-section">
-      <h2 class="section-title prev-title">전에 못한 일</h2>
-      <ul class="prev-todo-list">
-          <input type="checkbox" id="prev1">
-          <label for="prev1">(날짜) (디비)</label>
-      </ul>
+        <h2 class="section-title prev-title">전에 못한 일</h2>
+        <ul class="prev-todo-list">
+          <li>
+            <input type="checkbox" id="prev1">
+            <label for="prev1">(2025.05.24) 디비</label>
+          </li>
+          <li>
+            <input type="checkbox" id="prev2">
+            <label for="prev2">캘린더</label>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const addButton = document.querySelector(".add-todo");
+    const inputBox = document.querySelector(".add-task-box");
+    const todoList = document.querySelector(".todo-list");
+    const dateDiv = document.querySelector(".date");
+
+    // 오늘 날짜 한국어로 표시
+    const today = new Date().toLocaleDateString("ko-KR", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      weekday: "long"
+    });
+    dateDiv.textContent = today;
+
+    // 할 일 추가 버튼 클릭 이벤트
+    addButton.addEventListener("click", function () {
+      const task = inputBox.value.trim();
+
+      // 입력창이 보이지 않으면 보여주기
+      if (inputBox.offsetParent === null) {
+        inputBox.style.display = "inline-block";
+        inputBox.focus();
+        return;
+      }
+
+      // 입력값이 있을 경우, 새로운 할 일 추가
+      if (task !== "") {
+        const newTodo = document.createElement("li");
+        const newId = "todo" + Date.now();
+
+        newTodo.innerHTML = `
+          <label class="todo-item">
+            <span>${task}</span>
+            <input type="checkbox" id="${newId}">
+          </label>
+        `;
+        todoList.appendChild(newTodo);
+
+        // 입력창 초기화 및 숨기기
+        inputBox.value = "";
+        inputBox.style.display = "none";
+      }
+    });
+  });
+</script>
 </body>
 </html>
