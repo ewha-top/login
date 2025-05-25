@@ -3,7 +3,7 @@ from models import db, User
 from flask import flash
 from sqlalchemy.exc import IntegrityError
 
-app = Flask(__name__) #ㅣ아렂ㄷ랟
+app = Flask(__name__) #오로라
 app.secret_key = 'your_secret'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'  # 또는 MySQL URI
 db.init_app(app)
