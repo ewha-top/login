@@ -3,24 +3,47 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>할일목록</title>
+    <title>체크리스트</title>
+    <link rel="stylesheet" href="todo-style.css" />
 </head>
 
 <body>
   <div class="todo-container">
 
+    <!-- 메뉴, 캘린더, 로그아웃 버튼-->
+    <div class="icon menu-icon"></div>
+    <div class="icon calendar-icon"></div>
+    <div class="icon logout-icon"></div>
+
     <div class="todo-list-section">
-      <h2>할 일 목록</h2>
+      <h2 class="section-title todo-title">할 일 목록</h2>
       <div class="date">날짜가져오는거(JAVA)</div>
+      
+      <!-- 할 일 목록-->
       <ul class="todo-list">
+        <li>
           <input type="checkbox" id="todo1">
           <label for="todo1">디비에서내용연결(JAVA)</label>
+        </li>
       </ul>
-      <button class="add-todo">+ 할 일 추가</button>
+      <!-- 할 일 추가 버튼-->
+       <div class="add-task-wrapper">
+        <input type="text" class="add-task-box" placeholder="할 일을 입력하세요" style="display: none;">
+        <button class="add-todo">+ 할 일 추가</button>
+       </div>
+    </div>
+
+    <!-- 메모 영역-->
+    <div class="memo-section">
+      <div class="memo-label">메모</div>
+      <hr class="memo-line">
+      <hr class="memo-line">
+      <hr class="memo-line">
+      <hr class="memo-line">
     </div>
 
     <div class="prev-todo-section">
-      <h3>전에 못한 일</h3>
+      <h2 class="section-title prev-title">전에 못한 일</h2>
       <ul class="prev-todo-list">
           <input type="checkbox" id="prev1">
           <label for="prev1">(날짜) (디비)</label>
